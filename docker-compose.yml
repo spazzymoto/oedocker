@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    container_name: db
+    image: oe-db-11.7.2:latest
+    volumes:
+     - /db:/db
+    ipc: "shareable"
+
+  pas:
+    image: oe-pas-prod-11.7.2:latest
+    depends_on:
+     - db
+    volumes:
+     - /db:/db
+    ipc: container:db
+    pid: container:db
+
+  lb:
+    image: dockercloud/haproxy
+    links:
+     - pas
+    ports:
+     - 80:80
+    environment:
+     - BALANCE=leastconn
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock

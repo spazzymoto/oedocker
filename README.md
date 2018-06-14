@@ -9,7 +9,7 @@ Requirements:
 1. Docker & docker-compose
 2. Linux host
 3. PROGRESS_OE_11.7.2_LNX_64.tar.gz
-4. License for DB & PAS
+4. License for OE Enterprise RDBMS & Progress ProdAS for OE
 
 There are 3 Dockerfile's in this repo:
   - /Dockerfile
